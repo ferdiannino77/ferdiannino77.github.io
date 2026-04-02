@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ferdian Dhanino Rachmawan — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #5bc4f5;
+    --ocean: #2a8dd4;
+    --deep: #1565c0;
+    --royal: #1a4fa8;
+    --midnight: #0d2f6e;
+    --light-blue: #e8f4ff;
+    --ice: #f0f8ff;
+    --white: #ffffff;
+    --text-dark: #0d2f6e;
+    --text-mid: #2a5298;
+    --text-light: #6b9fd4;
+    --glass: rgba(255,255,255,0.18);
+    --glass-border: rgba(255,255,255,0.35);
+    --shadow-blue: rgba(21, 101, 192, 0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ice);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px var(--shadow-blue); }
+  .nav-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800; font-size: 1.15rem;
+    color: var(--royal);
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: .875rem; font-weight: 500;
+    color: var(--text-mid);
+    transition: color .2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 2px; background: var(--ocean);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s;
+  }
+  .nav-links a:hover { color: var(--ocean); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d2f6e 0%, #1565c0 35%, #2a8dd4 65%, #5bc4f5 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 120px 80px 80px;
+    gap: 60px;
+  }
+  .hero-orbs {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+  .orb {
+    position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    animation: drift 8s ease-in-out infinite;
+  }
+  .orb:nth-child(1) { width: 500px; height: 500px; top: -150px; right: -100px; animation-delay: 0s; }
+  .orb:nth-child(2) { width: 300px; height: 300px; bottom: 50px; left: 200px; animation-delay: -3s; }
+  .orb:nth-child(3) { width: 200px; height: 200px; top: 40%; right: 30%; animation-delay: -6s; }
+  @keyframes drift {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(20px, -20px) scale(1.05); }
+  }
+
+  .hero-text { flex: 1; z-index: 2; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 100px; padding: 6px 18px;
+    font-size: .78rem; font-weight: 500; color: rgba(255,255,255,0.9);
+    letter-spacing: .08em; text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeUp .8s ease both;
+  }
+  .hero-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sky); }
+  .hero-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 800; line-height: 1.05;
+    color: #fff; letter-spacing: -0.03em;
+    animation: fadeUp .8s .15s ease both;
+  }
+  .hero-name span { color: var(--sky); }
+  .hero-role {
+    font-size: 1.15rem; font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    margin: 16px 0 28px;
+    animation: fadeUp .8s .3s ease both;
+  }
+  .hero-desc {
+    font-size: .95rem; line-height: 1.75;
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    animation: fadeUp .8s .45s ease both;
+  }
+  .hero-ctas {
+    display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap;
+    animation: fadeUp .8s .6s ease both;
+  }
+  .btn-primary {
+    background: #fff; color: var(--royal);
+    padding: 13px 28px; border-radius: 50px;
+    text-decoration: none; font-weight: 600; font-size: .9rem;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.5); color: #fff;
+    padding: 11px 26px; border-radius: 50px;
+    text-decoration: none; font-weight: 500; font-size: .9rem;
+    transition: background .2s, border-color .2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 48px;
+    animation: fadeUp .8s .75s ease both;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    color: #fff;
+  }
+  .stat-label {
+    font-size: .75rem; color: rgba(255,255,255,0.65);
+    letter-spacing: .06em; text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .hero-photo-wrap {
+    z-index: 2; flex-shrink: 0;
+    animation: fadeUp .8s .3s ease both;
+  }
+  .hero-photo-frame {
+    width: 320px; height: 420px;
+    border-radius: 32px 32px 80px 32px;
+    overflow: hidden;
+    border: 4px solid rgba(255,255,255,0.4);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
+    position: relative;
+  }
+  .hero-photo-frame img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top center;
+  }
+  .photo-badge {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+    border-radius: 50px; padding: 8px 18px;
+    font-size: .78rem; font-weight: 600; color: var(--royal);
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 80px; }
+  .section-eyebrow {
+    font-size: .75rem; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ocean); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800; color: var(--midnight);
+    letter-spacing: -0.02em; line-height: 1.1;
+    margin-bottom: 48px;
+  }
+  .section-title span { color: var(--ocean); }
+
+  /* ── ABOUT ── */
+  #about { background: #fff; }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: start;
+  }
+  .about-body { font-size: 1rem; line-height: 1.85; color: #3a5a8a; }
+  .about-body p + p { margin-top: 16px; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .skill-pill {
+    background: var(--light-blue);
+    border: 1px solid rgba(42,141,212,0.2);
+    border-radius: 12px; padding: 14px 18px;
+    font-size: .85rem; font-weight: 500; color: var(--royal);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .skill-pill .icon { font-size: 1.1rem; }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--light-blue); }
+  .edu-card {
+    background: #fff; border-radius: 24px; padding: 36px 40px;
+    display: flex; align-items: center; gap: 32px;
+    box-shadow: 0 8px 40px var(--shadow-blue);
+    max-width: 680px;
+    border: 1px solid rgba(42,141,212,0.1);
+  }
+  .edu-icon {
+    width: 72px; height: 72px; border-radius: 20px;
+    background: linear-gradient(135deg, var(--deep), var(--sky));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; flex-shrink: 0;
+  }
+  .edu-body .degree {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem; font-weight: 700; color: var(--midnight);
+  }
+  .edu-body .uni { color: var(--ocean); font-weight: 500; margin: 4px 0; }
+  .edu-body .gpa {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, var(--deep), var(--ocean));
+    color: #fff; border-radius: 100px; padding: 5px 16px;
+    font-size: .82rem; font-weight: 700; margin-top: 12px;
+  }
+  .edu-grid {
+  display: grid;
+  gap: 24px;
+  justify-content: center;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: #fff; }
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 2px; background: linear-gradient(to bottom, var(--ocean), var(--sky));
+    border-radius: 2px;
+  }
+  .tl-item {
+    position: relative; margin-bottom: 40px;
+    background: var(--light-blue);
+    border-radius: 20px; padding: 28px 32px;
+    border: 1px solid rgba(42,141,212,0.12);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .tl-item:hover { transform: translateX(6px); box-shadow: 0 8px 32px var(--shadow-blue); }
+  .tl-item::before {
+    content: ''; position: absolute; left: -40px; top: 32px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--ocean); border: 3px solid #fff;
+    box-shadow: 0 0 0 3px var(--ocean);
+  }
+  .tl-role {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem; font-weight: 700; color: var(--midnight);
+  }
+  .tl-org { color: var(--ocean); font-size: .9rem; font-weight: 500; margin: 4px 0 14px; }
+  .tl-date {
+    font-size: .75rem; background: var(--ocean); color: #fff;
+    border-radius: 100px; padding: 3px 12px; display: inline-block;
+    margin-bottom: 14px; font-weight: 500;
+  }
+  .tl-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .tl-list li {
+    font-size: .88rem; color: #3a5a8a; line-height: 1.6;
+    padding-left: 16px; position: relative;
+  }
+  .tl-list li::before {
+    content: '›'; position: absolute; left: 0; color: var(--ocean); font-weight: 700;
+  }
+
+  /* ── STATISTICAL PROJECTS ── */
+  #projects {
+    background: var(--light-blue);
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+  }
+  .project-card {
+    background: #fff;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px var(--shadow-blue);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid rgba(42,141,212,0.15);
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px var(--shadow-blue);
+  }
+  .project-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    background: #d9eaff;
+    transition: transform 0.4s;
+  }
+  .project-card:hover .project-img {
+    transform: scale(1.02);
+  }
+  .project-content {
+    padding: 16px 16px 20px;
+  }
+  .project-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--midnight);
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  .project-desc {
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: #3a5a8a;
+  }
+  .project-tech {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: var(--light-blue);
+    padding: 4px 12px;
+    border-radius: 100px;
+    color: var(--deep);
+  }
+
+  /* ── INFOGRAPHICS CAROUSEL (BARU) ── */
+  #infographics {
+    background: #fff;
+    overflow: hidden;
+  }
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    scrollbar-width: thin;
+    border-radius: 24px;
+  }
+  .carousel-container:active {
+    cursor: grabbing;
+  }
+  .carousel-track {
+    display: flex;
+    gap: 24px;
+    padding: 20px 80px;
+  }
+  .carousel-slide {
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+    background: var(--light-blue);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 8px 24px var(--shadow-blue);
+  }
+  .carousel-slide:hover {
+    transform: scale(1.02);
+    box-shadow: 0 16px 40px var(--shadow-blue);
+  }
+  .carousel-slide img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+  .carousel-slide:hover img {
+    transform: scale(1.05);
+  }
+  .carousel-caption {
+    padding: 16px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--midnight);
+    background: white;
+    border-top: 2px solid var(--ocean);
+  }
+  .carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .carousel-btn {
+    background: var(--ocean);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px var(--shadow-blue);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel-btn:hover {
+    background: var(--deep);
+    transform: scale(1.08);
+  }
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-light);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .indicator.active {
+    width: 24px;
+    border-radius: 4px;
+    background: var(--ocean);
+  }
+  /* Hide scrollbar but keep functionality */
+  .carousel-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  .carousel-container::-webkit-scrollbar-track {
+    background: var(--light-blue);
+    border-radius: 10px;
+  }
+  .carousel-container::-webkit-scrollbar-thumb {
+    background: var(--ocean);
+    border-radius: 10px;
+  }
+
+  /* ── ACHIEVEMENTS ── */
+  #achievements {
+    background: linear-gradient(135deg, var(--midnight) 0%, var(--royal) 50%, var(--deep) 100%);
+  }
+  #achievements .section-eyebrow { color: var(--sky); }
+  #achievements .section-title { color: #fff; }
+  #achievements .section-title span { color: var(--sky); }
+  .ach-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
+  }
+  .ach-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px; padding: 28px 24px;
+    transition: background .3s, transform .3s;
+    backdrop-filter: blur(8px);
+  }
+  .ach-card:hover {
+    background: rgba(255,255,255,0.14);
+    transform: translateY(-4px);
+  }
+  .ach-medal {
+    font-size: 2.2rem; margin-bottom: 12px;
+    display: block;
+  }
+  .ach-place {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.4rem; font-weight: 800;
+    color: #fff;
+  }
+  .ach-place.gold { color: #ffd700; }
+  .ach-place.silver { color: #c0d8f0; }
+  .ach-place.bronze { color: #f4a460; }
+  .ach-event {
+    font-size: .85rem; color: rgba(255,255,255,0.75);
+    margin: 8px 0 4px; line-height: 1.5;
+  }
+  .ach-host {
+    font-size: .75rem; color: rgba(255,255,255,0.45);
+    letter-spacing: .04em;
+  }
+
+  /* ── GALLERY ── */
+  #gallery { background: var(--light-blue); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .gallery-item {
+    border-radius: 20px; overflow: hidden;
+    aspect-ratio: 4/3;
+    position: relative; cursor: pointer;
+    box-shadow: 0 4px 20px var(--shadow-blue);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .gallery-item:hover { transform: scale(1.03); box-shadow: 0 12px 40px var(--shadow-blue); }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .5s;
+  }
+  .gallery-item:hover img { transform: scale(1.08); }
+  .gallery-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(13,47,110,0.9) 0%, transparent 100%);
+    color: #fff; padding: 28px 16px 14px;
+    font-size: .8rem; font-weight: 500;
+    opacity: 0; transition: opacity .3s;
+  }
+  .gallery-item:hover .gallery-caption { opacity: 1; }
+
+  /* ── PUBLICATION ── */
+  #publication { background: #fff; }
+  .pub-card {
+    background: linear-gradient(135deg, var(--light-blue), #fff);
+    border: 1px solid rgba(42,141,212,0.2);
+    border-radius: 24px; padding: 36px 40px;
+    max-width: 700px;
+    box-shadow: 0 8px 40px var(--shadow-blue);
+    display: flex; gap: 24px; align-items: flex-start;
+  }
+  .pub-icon {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: linear-gradient(135deg, var(--deep), var(--ocean));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; flex-shrink: 0;
+  }
+  .pub-badge {
+    display: inline-block; background: var(--ocean); color: #fff;
+    font-size: .7rem; font-weight: 700; letter-spacing: .06em;
+    padding: 3px 10px; border-radius: 100px; margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .pub-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 700; color: var(--midnight);
+    line-height: 1.4;
+  }
+  .pub-year { font-size: .82rem; color: var(--text-light); margin-top: 8px; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: linear-gradient(135deg, var(--deep) 0%, var(--ocean) 60%, var(--sky) 100%);
+    text-align: center;
+  }
+  #contact .section-eyebrow { color: rgba(255,255,255,0.7); }
+  #contact .section-title { color: #fff; margin-bottom: 16px; }
+  #contact .section-title span { color: #fff; opacity: .7; }
+  .contact-sub {
+    color: rgba(255,255,255,0.75); font-size: 1rem;
+    max-width: 480px; margin: 0 auto 48px; line-height: 1.7;
+  }
+  .contact-links {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+  }
+  .contact-link {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 16px; padding: 20px 28px;
+    color: #fff; text-decoration: none;
+    display: flex; align-items: center; gap: 12px;
+    font-weight: 500; transition: background .2s, transform .2s;
+    backdrop-filter: blur(8px);
+  }
+  .contact-link:hover { background: rgba(255,255,255,0.25); transform: translateY(-3px); }
+  .contact-link .icon { font-size: 1.4rem; }
+  .contact-link .label { font-size: .78rem; opacity: .7; display: block; }
+  .contact-link .value { font-size: .9rem; font-weight: 600; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--midnight);
+    text-align: center; padding: 24px;
+    color: rgba(255,255,255,0.35); font-size: .8rem;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 20px; }
+    #hero { flex-direction: column; padding: 100px 32px 64px; }
+    .hero-photo-frame { width: 240px; height: 320px; }
+    section { padding: 64px 32px; }
+    .about-grid, .ach-grid, .gallery-grid, .projects-grid { grid-template-columns: 1fr; }
+    .ach-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 20px; }
+    .carousel-track { padding: 20px 32px; }
+    .carousel-slide { flex: 0 0 260px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">FDR.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#infographics">Infographics</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-orbs">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
+
+  <div class="hero-text">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      Statistics Student · ITS Surabaya
+    </div>
+    <h1 class="hero-name">Ferdian<br><span>Dhanino</span><br>Rachmawan</h1>
+    <p class="hero-role">Data Analyst · Scientific Researcher · MC</p>
+    <p class="hero-desc">
+      Detail-oriented Statistics student with a passion for transforming raw data into meaningful insights. Experienced in statistical modelling, data visualization, and evidence-based research across social, environmental, and development domains.
+    </p>
+    <div class="hero-ctas">
+      <a href="#achievements" class="btn-primary">View Achievements</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">3.58</div>
+        <div class="stat-label">GPA</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Awards</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Publication</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-photo-wrap">
+    <div class="hero-photo-frame">
+      <img src="Gambar Profil.jpeg" alt="Ferdian Dhanino Rachmawan">
+      <div class="photo-badge">✦ Cum Laude Track</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow reveal">Who I Am</div>
+  <h2 class="section-title reveal">About <span>Me</span></h2>
+  <div class="about-grid">
+    <div class="about-body reveal">
+      <p>I'm a Statistics undergraduate at the <strong>Sepuluh Nopember Institute of Technology (ITS) Surabaya</strong>, currently maintaining a GPA of <strong>3.58/4.00</strong> on a Cum Laude track.</p>
+      <p>My academic journey centers on applying statistical methods to real-world challenges — from building social piety indices for local governments, to producing national-award-winning scientific papers on community resilience and digital approaches to disaster mitigation.</p>
+      <p>Beyond the classroom, I lead the <strong>Scientific Department of HIMASTA ITS</strong>, mentor junior researchers, and serve as a Master of Ceremony at various academic and institutional events. I believe data is most powerful when it tells a story that drives change.</p>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-pill"><span class="icon">📊</span> Python & R</div>
+      <div class="skill-pill"><span class="icon">📉</span> SEM-PLS</div>
+      <div class="skill-pill"><span class="icon">🗂️</span> Data Visualization</div>
+      <div class="skill-pill"><span class="icon">📈</span> Regression Analysis</div>
+      <div class="skill-pill"><span class="icon">🖥️</span> Microsoft Excel</div>
+      <div class="skill-pill"><span class="icon">🎨</span> Canva & PowerPoint</div>
+      <div class="skill-pill"><span class="icon">🗣️</span> Public Speaking / MC</div>
+      <div class="skill-pill"><span class="icon">🔬</span> Scientific Writing</div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-eyebrow reveal">Academic Background</div>
+  <h2 class="section-title reveal">My <span>Education</span></h2>
+
+  <!-- SMA -->
+  <div class="edu-card reveal">
+    <div class="edu-icon">🏫</div>
+    <div class="edu-body">
+      <div class="degree">Senior High School</div>
+      <div class="uni">SMA Negeri 1 Talun — Acceleration Class</div>
+      <div style="font-size:.85rem;color:#6b9fd4;">2021 – 2023</div>
+      <div class="gpa">⭐ Average Score 91.4</div>
+    </div>
+  </div>
+
+  <!-- Kuliah -->
+  <div class="edu-card reveal">
+    <div class="edu-icon">🎓</div>
+    <div class="edu-body">
+      <div class="degree">Bachelor of Statistics</div>
+      <div class="uni">Sepuluh Nopember Institute of Technology (ITS) — Surabaya</div>
+      <div style="font-size:.85rem;color:#6b9fd4;">2023 – Present</div>
+      <div class="gpa">⭐ GPA 3.58 / 4.00 · Cum Laude Track</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow reveal">Work & Org</div>
+  <h2 class="section-title reveal">My <span>Experience</span></h2>
+  <div class="timeline">
+
+    <div class="tl-item reveal">
+      <div class="tl-date">Jan 2026 – Present</div>
+      <div class="tl-role">Leader of Scientific Department</div>
+      <div class="tl-org">HIMASTA ITS (Statistics Student Organization)</div>
+      <ul class="tl-list">
+        <li>Led and coordinated scientific programs for academic development, research, and student creativity</li>
+        <li>Supervised team members in planning and executing scientific activities and competitions</li>
+        <li>Collaborated with internal departments and external partners to enhance academic engagement</li>
+        <li>Supported students in academic projects and PKM preparation</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-date">Dec 2025 – Jan 2026</div>
+      <div class="tl-role">Asisten Ahli (Research Assistant)</div>
+      <div class="tl-org">Pusat Studi PDPM-DRPM ITS</div>
+      <ul class="tl-list">
+        <li>Assisted in data entry, cleaning, and validation for Social Piety Index (IKS) Mojokerto 2025 and National Alertness Index (IKN) Probolinggo 2025 surveys</li>
+        <li>Assisted in dashboard creation and data visualization for public service evaluation</li>
+        <li>Supported analytical discussions and report drafting for internship projects</li>
+        <li>Participated in field survey activities and community service programs</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-date">Feb 2026 – Present</div>
+      <div class="tl-role">Advisor — Extracurricular Peneliti Pelajar Surabaya</div>
+      <div class="tl-org">SMP Negeri 30 Surabaya</div>
+      <ul class="tl-list">
+        <li>Mentored students for the Surabaya Student Research Competition</li>
+        <li>Assisted in scientific writing preparation</li>
+        <li>Guided research poster and presentation design</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATISTICAL PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow reveal">Statistical Work</div>
+  <h2 class="section-title reveal">Data <span>Projects</span></h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <img class="project-img" src="Statnonpar.jpeg" alt="Preview proyek keterbukaan mahasiswa">
+      <div class="project-content">
+        <div class="project-title">Analisis Skor Keterbukaan Mahasiswa Statistika ITS 2023 — First Account vs Second Account</div>
+        <span class="project-tech">📊 Non-Parametric · R · Hypothesis Testing</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <img class="project-img" src="Desain Survei.jpeg" alt="Desain Survei Sanitasi Jatim">
+      <div class="project-content">
+        <div class="project-title">Desain Survei & Studi Sampling — Survei Kelayakan Sanitasi di Jawa Timur</div>
+        <span class="project-tech">📋 Survey Sampling · Stratified Cluster · Design Effect</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <img class="project-img" src="placeholder3.jpg" alt="Survival analysis kanker payudara">
+      <div class="project-content">
+        <div class="project-title">Regresi Cox Proportional Hazard & Extended Cox — Ketahanan Hidup Pasien Kanker Payudara</div>
+        <span class="project-tech">🩺 Survival Analysis · Cox Regression · R</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <img class="project-img" src="placeholder4.jpg" alt="NLP XLM-RoBERTa K-Pop lyrics">
+      <div class="project-content">
+        <div class="project-title">Semantic & Emotional Analysis of K-Pop Lyrics Using XLM-RoBERTa</div>
+        <span class="project-tech">🤖 Machine Learning · NLP · XLM-RoBERTa · Python</span>
+      </div>
+    </div>
+      <!-- Project 5 -->
+    <div class="project-card reveal">
+      <img class="project-img" src="placeholder5.jpg" alt="Survival analysis kanker payudara">
+      <div class="project-content">
+        <div class="project-title">Analisis Model Prediksi Stroke Berbasis Machine Learning dengan Penanganan Data Inbalance</div>
+        <span class="project-tech">🩺 Data Mining · Visualization · Streamlite</span>
+      </div>
+    </div>
+      <!-- Project 6 -->
+    <div class="project-card reveal">
+      <img class="project-img" src="Medical Center.jpg" alt="Tekik Simulasi">
+      <div class="project-content">
+        <div class="project-title">Analisis dan Optimalisasi Sistem Antrian di Medical Center ITS Surabaya</div>
+        <span class="project-tech">🩺 Teknik Simulasi · Queue Teory </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========= INFOGRAPHICS CAROUSEL (BERGESER) ========= -->
+<section id="infographics">
+  <div class="section-eyebrow reveal">Visual Storytelling</div>
+  <h2 class="section-title reveal">Infographics <span>Gallery</span></h2>
+  
+  <div class="carousel-container" id="carouselContainer">
+    <div class="carousel-track" id="carouselTrack">
+      <!-- Slide 1 -->
+      <div class="carousel-slide">
+        <img src="Satria Data.png" alt="Infografis 1">
+        <div class="carousel-caption">📊 Lomba Infografis Universitas Medan</div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="carousel-slide">
+        <img src="Lomba Adit Maya.jpeg" alt="Infografis 2">
+        <div class="carousel-caption">🌍 Lomba Inforafis UNISBA</div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="carousel-slide">
+        <img src="Lomba Mediheal.jpeg" alt="Infografis 3">
+        <div class="carousel-caption">📈 Lomba Poster UNESA</div>
+      </div>
+      <!-- Slide 4 -->
+      <div class="carousel-slide">
+        <img src="Lomba Unair.jpeg" alt="Infografis 4">
+        <div class="carousel-caption">🏥 Lomba Infografis ARSEN UNAIR</div>
+      </div>
+      <!-- Slide 5 -->
+      <div class="carousel-slide">
+        <img src="Syiah Kuala.jpeg" alt="Infografis 5">
+        <div class="carousel-caption">🧠 Lomba Infografis Syiah Kuala</div>
+      </div>
+      <!-- Slide 6 -->
+      <div class="carousel-slide">
+        <img src="Statof.jpeg" alt="Infografis 6">
+        <div class="carousel-caption">📱 Statistika Official</div>
+      </div>
+      <!-- Slide 7 -->
+      <div class="carousel-slide">
+        <img src="Poster Bali.jpeg" alt="Infografis 7">
+        <div class="carousel-caption">♻️ Lomba Poster Universitas Udayana</div>
+      </div>
+       <!-- Slide 8 -->
+      <div class="carousel-slide">
+        <img src="SIA.jpeg" alt="Infografis 7">
+        <div class="carousel-caption">♻️ Lomba Infografis SIA</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="carousel-controls">
+    <button class="carousel-btn" id="prevBtn">◀</button>
+    <button class="carousel-btn" id="nextBtn">▶</button>
+  </div>
+  <div class="carousel-indicators" id="indicators"></div>
+</section>
+<!-- ============================================= -->
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-eyebrow reveal">Recognition</div>
+  <h2 class="section-title reveal">Awards & <span>Achievements</span></h2>
+  <div class="ach-grid">
+
+    <div class="ach-card reveal">
+      <span class="ach-medal">🥇</span>
+      <div class="ach-place gold">1st Place</div>
+      <div class="ach-event">National Paper Competition in Statistics "RED COMPAS"</div>
+      <div class="ach-host">Politeknik STIS</div>
+    </div>
+
+    <div class="ach-card reveal">
+      <span class="ach-medal">🥇</span>
+      <div class="ach-place gold">1st Place</div>
+      <div class="ach-event">Medical Poster Competition "MEDIHEAL"</div>
+      <div class="ach-host">Universitas Negeri Surabaya</div>
+    </div>
+
+    <div class="ach-card reveal">
+      <span class="ach-medal">🥈</span>
+      <div class="ach-place silver">2nd Place</div>
+      <div class="ach-event">Scientific Article Competition "SOCIUS"</div>
+      <div class="ach-host">Universitas Negeri Surabaya</div>
+    </div>
+
+    <div class="ach-card reveal">
+      <span class="ach-medal">🥈</span>
+      <div class="ach-place silver">2nd Place</div>
+      <div class="ach-event">Scientific Writing Competition "Bulan Pancasila"</div>
+      <div class="ach-host">Universitas Negeri Semarang</div>
+    </div>
+
+    <div class="ach-card reveal">
+      <span class="ach-medal">🥈</span>
+      <div class="ach-place silver">2nd Place</div>
+      <div class="ach-event">National Scientific Writing in Sociology "SANEC"</div>
+      <div class="ach-host">Universitas Negeri Semarang</div>
+    </div>
+
+    <div class="ach-card reveal">
+      <span class="ach-medal">🥉</span>
+      <div class="ach-place bronze">3rd Place</div>
+      <div class="ach-event">National Statistical Infographic Competition "STAT EXPLORE"</div>
+      <div class="ach-host">Universitas Syiah Kuala Aceh</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-eyebrow reveal">Memories</div>
+  <h2 class="section-title reveal">Photo <span>Gallery</span></h2>
+  <div class="gallery-grid">
+
+    <div class="gallery-item reveal">
+      <img src="Himpunan Mahasiswa Statistika - Keilmiahan.jpeg" alt="HIMASTA Keilmiahan">
+      <div class="gallery-caption">HIMASTA ITS — Scientific Department Team</div>
+    </div>
+
+    <div class="gallery-item reveal">
+      <img src="SOCIUS - Universitas Negeri Surabaya.jpeg" alt="SOCIUS UNESA">
+      <div class="gallery-caption">🥈 2nd Place — SOCIUS, Universitas Negeri Surabaya</div>
+    </div>
+
+    <div class="gallery-item reveal">
+      <img src="Bulan Pancasila - Universitas Negeri Semarang.jpeg" alt="Bulan Pancasila UNNES">
+      <div class="gallery-caption">🥈 2nd Place — Bulan Pancasila, UNNES</div>
+    </div>
+
+    <div class="gallery-item reveal">
+      <img src="Lomba SANEC - Universitas Negeri Semarang.jpeg" alt="SANEC UNNES">
+      <div class="gallery-caption">🥈 2nd Place — SANEC National, UNNES</div>
+    </div>
+
+    <div class="gallery-item reveal">
+      <img src="Universitas Syiah Kuala.jpeg" alt="Syiah Kuala STAT EXPLORE">
+      <div class="gallery-caption">🥉 3rd Place — STAT EXPLORE, Universitas Syiah Kuala</div>
+    </div>
+
+    <div class="gallery-item reveal">
+      <img src="Mediheal - Universitas Negeri Surabaya.jpeg" alt="MEDIHEAL UNESA">
+      <div class="gallery-caption">🥇 1st Place — MEDIHEAL Poster, UNESA</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PUBLICATION -->
+<section id="publication">
+  <div class="section-eyebrow reveal">Research Output</div>
+  <h2 class="section-title reveal">Publication</h2>
+  <div class="pub-card reveal">
+    <div class="pub-icon">📄</div>
+    <div>
+      <span class="pub-badge">Sinta 3 · Sociology Journal</span>
+      <div class="pub-title">The Harmonising Social Capital and Community Participation in Puncu Village: A Digital Approach to Mitigating The Threat of Mount Kelud's Eruption</div>
+      <div class="pub-year">Published · 2025</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow reveal">Say Hello</div>
+  <h2 class="section-title reveal">Let's <span>Connect</span></h2>
+  <p class="contact-sub reveal">
+    Open to research collaborations, data projects, academic discussions, or just a friendly chat about statistics and evidence-based decision making.
+  </p>
+  <div class="contact-links reveal">
+    <a href="mailto:ferdiannino77@gmail.com" class="contact-link">
+      <span class="icon">✉️</span>
+      <span>
+        <span class="label">Email</span>
+        <span class="value">ferdiannino77@gmail.com</span>
+      </span>
+    </a>
+    <a href="https://www.linkedin.com/in/ferdian-dhanino-rachmawan-52097b2a5" target="_blank" class="contact-link">
+      <span class="icon">💼</span>
+      <span>
+        <span class="label">LinkedIn</span>
+        <span class="value">Ferdian Dhanino</span>
+      </span>
+    </a>
+    <a href="tel:+6285785474831" class="contact-link">
+      <span class="icon">📱</span>
+      <span>
+        <span class="label">Phone / WhatsApp</span>
+        <span class="value">+62 857-8547-4831</span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Ferdian Dhanino Rachmawan · Statistics · ITS Surabaya
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        const siblings = [...e.target.parentElement.querySelectorAll('.reveal:not(.visible)')];
+        const idx = siblings.indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), idx * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => io.observe(r));
+
+  // ========= INFOGRAPHICS CAROUSEL LOGIC =========
+  const container = document.getElementById('carouselContainer');
+  const track = document.getElementById('carouselTrack');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const indicatorsContainer = document.getElementById('indicators');
+  
+  let slides = Array.from(document.querySelectorAll('.carousel-slide'));
+  let currentIndex = 0;
+  
+  // Generate indicators
+  function generateIndicators() {
+    indicatorsContainer.innerHTML = '';
+    slides.forEach((_, idx) => {
+      const dot = document.createElement('div');
+      dot.classList.add('indicator');
+      if (idx === currentIndex) dot.classList.add('active');
+      dot.addEventListener('click', () => {
+        currentIndex = idx;
+        scrollToSlide(currentIndex);
+        updateIndicators();
+      });
+      indicatorsContainer.appendChild(dot);
+    });
+  }
+  
+  function updateIndicators() {
+    const dots = document.querySelectorAll('.indicator');
+    dots.forEach((dot, idx) => {
+      if (idx === currentIndex) dot.classList.add('active');
+      else dot.classList.remove('active');
+    });
+  }
+  
+  function scrollToSlide(index) {
+    const slide = slides[index];
+    if (slide) {
+      slide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    }
+  }
+  
+  function updateCurrentIndex() {
+    const containerRect = container.getBoundingClientRect();
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+    
+    slides.forEach((slide, idx) => {
+      const slideRect = slide.getBoundingClientRect();
+      const distance = Math.abs(slideRect.left - containerRect.left);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = idx;
+      }
+    });
+    
+    if (closestIndex !== currentIndex) {
+      currentIndex = closestIndex;
+      updateIndicators();
+    }
+  }
+  
+  function nextSlide() {
+    if (currentIndex < slides.length - 1) {
+      currentIndex++;
+      scrollToSlide(currentIndex);
+      updateIndicators();
+    } else {
+      // loop to first
+      currentIndex = 0;
+      scrollToSlide(currentIndex);
+      updateIndicators();
+    }
+  }
+  
+  function prevSlide() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      scrollToSlide(currentIndex);
+      updateIndicators();
+    } else {
+      // loop to last
+      currentIndex = slides.length - 1;
+      scrollToSlide(currentIndex);
+      updateIndicators();
+    }
+  }
+  
+  // Event listeners
+  container.addEventListener('scroll', () => {
+    requestAnimationFrame(updateCurrentIndex);
+  });
+  
+  nextBtn.addEventListener('click', nextSlide);
+  prevBtn.addEventListener('click', prevSlide);
+  
+  // Initialize
+  generateIndicators();
+  
+  // Optional: drag to scroll behavior (already native)
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  
+  container.addEventListener('mousedown', (e) => {
+    isDown = true;
+    container.style.cursor = 'grabbing';
+    startX = e.pageX - container.offsetLeft;
+    scrollLeft = container.scrollLeft;
+  });
+  
+  container.addEventListener('mouseleave', () => {
+    isDown = false;
+    container.style.cursor = 'grab';
+  });
+  
+  container.addEventListener('mouseup', () => {
+    isDown = false;
+    container.style.cursor = 'grab';
+  });
+  
+  container.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    container.scrollLeft = scrollLeft - walk;
+  });
+</script>
+
+</body>
+</html>
