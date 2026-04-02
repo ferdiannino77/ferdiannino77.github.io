@@ -70,13 +70,19 @@
 
   /* ── HERO ── */
   #hero {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #0d2f6e 0%, #1565c0 35%, #2a8dd4 65%, #5bc4f5 100%);
-    position: relative; overflow: hidden;
-    display: flex; align-items: center;
-    padding: 120px 80px 80px;
-    gap: 60px;
-  }
+  min-height: 100vh;
+  background: url('Baground.jpg') center/cover no-repeat fixed;
+  /* fixed = background ikut scroll, lebih halus */
+  position: relative; 
+  overflow: hidden;
+}
+  #hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* gelapin background */
+  z-index: 0;
+}
   .hero-orbs {
     position: absolute; inset: 0; pointer-events: none; overflow: hidden;
   }
@@ -93,7 +99,10 @@
     50% { transform: translate(20px, -20px) scale(1.05); }
   }
 
-  .hero-text { flex: 1; z-index: 2; }
+  .hero-text, .hero-photo-wrap {
+  position: relative;
+  z-index: 2;
+}
   .hero-tag {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(255,255,255,0.15);
@@ -189,7 +198,6 @@
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
   /* ── SECTIONS ── */
   section { padding: 96px 80px; }
   .section-eyebrow {
@@ -631,7 +639,7 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <div class="nav-logo">FDR.</div>
+  <div class="nav-logo">Ferdian Portofolio.</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#education">Education</a></li>
